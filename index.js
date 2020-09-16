@@ -24,9 +24,21 @@ app.post("/users", async (req, res, next) => {
   }
 });
 
-// Get user info
+// Get specific user info
 
 app.get("/users/:userId", async (req, res) => {
+  const userId = parseInt(req.params.userId);
+  const user = await User.findByPk(userId);
+  if (!user) {
+    res.status(404).send("User not found");
+  } else {
+    res.send(user);
+  }
+});
+
+// Get all users
+
+app.get("/users/", async (req, res) => {
   const userId = parseInt(req.params.userId);
   const user = await User.findByPk(userId);
   if (!user) {
