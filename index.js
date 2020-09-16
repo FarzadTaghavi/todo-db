@@ -39,7 +39,7 @@ app.get("/users/:userId", async (req, res) => {
 // Get all users
 
 app.get("/users", async (req, res) => {
-  const user = await User.findall();
+  const user = await User.findAll();
   if (!user) {
     res.status(404).send("Users not found");
   } else {
