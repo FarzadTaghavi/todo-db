@@ -38,11 +38,10 @@ app.get("/users/:userId", async (req, res) => {
 
 // Get all users
 
-app.get("/users/", async (req, res) => {
-  const userId = parseInt(req.params.userId);
-  const user = await User.findByPk(userId);
+app.get("/users", async (req, res) => {
+  const user = await User.findall();
   if (!user) {
-    res.status(404).send("User not found");
+    res.status(404).send("Users not found");
   } else {
     res.send(user);
   }
